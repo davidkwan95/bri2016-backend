@@ -71,18 +71,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
+PROJECT_DIR  = os.path.dirname(__file__) 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
+# postgres://admin:UHSSHUQIBQGDVYCB@sl-us-dal-9-portal.3.dblayer.com:15393/compose
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hackhaton',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'compose',
+        'USER': 'admin',
+        'PASSWORD': 'UHSSHUQIBQGDVYCB',
+        'HOST': 'sl-us-dal-9-portal.3.dblayer.com',
+        'PORT': '15393',
     }
 }
 
