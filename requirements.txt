@@ -1,0 +1,4 @@
+Django==1.10.1
+djangorestframework==3.4.7
+Pillow==3.3.1
+qrcode==5.1
