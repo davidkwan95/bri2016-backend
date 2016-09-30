@@ -35,9 +35,43 @@ class CreateOrder(APIView):
                       "status": "ok",
                       "orderId": order.pk
                    }
-        print response
         return Response(response)
 
     def get(self, request):
         response = {"status" : "ok"}
+        return Response(response)
+
+class PayOrder(APIView):
+
+    def post(self, request):
+        json_data = json.loads(request.body)
+        orderId = json_data["orderId"]
+        pin = json_data["pin"]
+        # customer = request.user()
+        customer_id = 1
+
+        # Validate some fake PIN
+        print pin
+        if pin != "123456":
+            response = {"message": "invalid PIN"}
+            return Response(data = response, status=400)
+
+        # Insert whatever BRI API here
+        order = Order.objects.get(id = orderId)
+        order.status = "Completed"
+        order.save()
+        response = {
+                      "status": "ok",
+                   }
+        return Response(response)
+
+    def get(self, request):
+        response = {"status" : "ok"}
+        return Response(response)
+
+class CheckOrderStatus(APIView):
+
+    def get(self, request):
+        order = Order.objects.get(id = request.GET.get('id', ''))
+        response = {"orderStatus" : order.status}
         return Response(response)

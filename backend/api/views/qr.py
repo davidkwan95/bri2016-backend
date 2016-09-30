@@ -16,12 +16,6 @@ class QRCode(APIView):
 
     def get(self, request):
         order = Order.objects.get(id = request.GET.get('id', ''))
-        encoded_string = self.generate_qrcode(order)
-        response = {"image" : encoded_string}
-        return Response(response)
-
-    # return qrcode encoded to base64
-    def generate_qrcode(self, order):
         lines = order.lines.all()
         order_lines = []
         for line in lines:
@@ -39,6 +33,13 @@ class QRCode(APIView):
             "orderLines": order_lines,  
             "totalPrice": order.total_price
         }
+
+        encoded_string = self.generate_qrcode(data)
+        response = {"image" : encoded_string, "orderDetail": data}
+        return Response(response)
+
+    # return qrcode encoded to base64
+    def generate_qrcode(self, data):
         img = qrcode.make(json.dumps(data))
         buffer = cStringIO.StringIO()
         img.save(buffer)
