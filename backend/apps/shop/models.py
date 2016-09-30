@@ -21,6 +21,7 @@ class Order(models.Model):
     customer = models.ForeignKey(User)
     status = models.CharField(max_length=20)
     total_price = models.IntegerField(null = True)
+    created_at = models.DateField(auto_now_add = True, null = True)
 
 class OrderLine(models.Model):
     order = models.ForeignKey(Order, related_name='lines')

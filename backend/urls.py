@@ -43,6 +43,8 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^qrcode/generate/', qr.QRCode.as_view(), name='generate-qrcode'),
     url(r'^order/create', order.CreateOrder.as_view(), name='create-order'),
+    url(r'^order/history', order.OrderHistory.as_view(), name='order-history'),
     url(r'^order/pay', order.PayOrder.as_view(), name='pay-order'),
     url(r'^order/check-status', order.CheckOrderStatus.as_view(), name='check-order-status'),
+
 ]

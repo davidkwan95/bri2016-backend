@@ -75,3 +75,18 @@ class CheckOrderStatus(APIView):
         order = Order.objects.get(id = request.GET.get('id', ''))
         response = {"orderStatus" : order.status}
         return Response(response)
+
+class OrderHistory(APIView):
+
+    def get(self, request):
+        orders = Order.objects.filter(status='Completed')
+        orderHistory = []
+        for order in orders:
+            data = {
+                "id": order.id,
+                "totalPrice": order.total_price,
+                "date": order.created_at
+            }
+            orderHistory.append(data)
+        response = {"orderHistory" : orderHistory}
+        return Response(response)
