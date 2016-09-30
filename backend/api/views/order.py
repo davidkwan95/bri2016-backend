@@ -21,9 +21,9 @@ class CreateOrder(APIView):
         for line in lines:
             product = Product.objects.get(code = line['code'])
             quantity = line["quantity"]
-            unit_cost = line["unit_cost"]
-            line_price = line["line_price"]
-            
+            unit_cost = line["unitCost"]
+            line_price = line["linePrice"]
+
             total_price += line_price
             order_line = OrderLine(order = order, product = product, quantity = quantity,\
                                      unit_cost = unit_cost, line_price = line_price)
@@ -33,7 +33,7 @@ class CreateOrder(APIView):
 
         response = {
                       "status": "ok",
-                      "order_id": order.pk
+                      "orderId": order.pk
                    }
         return Response(response)
 
