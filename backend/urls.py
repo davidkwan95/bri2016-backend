@@ -19,6 +19,7 @@ from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from backend.api.views import (
     qr,
+    order,
 )
 
 # Serializers define the API representation.
@@ -41,4 +42,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^qrcode/generate/', qr.QRCode.as_view(), name='generate-qrcode'),
+    url(r'^order/create', order.CreateOrder.as_view(), name='create-order'),
 ]

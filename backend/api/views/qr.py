@@ -7,8 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from django.db import models
-from django.core.urlresolvers import reverse  
-from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.urlresolvers import reverse
 
 class QRCode(APIView):
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'qrcode',
+    'backend.apps.shop',
 ]
 
 MIDDLEWARE = [
@@ -81,13 +82,24 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'compose',
-        'USER': 'admin',
-        'PASSWORD': 'UHSSHUQIBQGDVYCB',
-        'HOST': 'sl-us-dal-9-portal.3.dblayer.com',
-        'PORT': '15393',
+        'NAME': 'hackhaton',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'compose',
+#         'USER': 'admin',
+#         'PASSWORD': 'UHSSHUQIBQGDVYCB',
+#         'HOST': 'sl-us-dal-9-portal.3.dblayer.com',
+#         'PORT': '15393',
+#     }
+# }
 
 
 # Password validation
@@ -109,11 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ]
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
+    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.SessionAuthentication',),
 }
 
 
