@@ -79,7 +79,7 @@ class CheckOrderStatus(APIView):
 class OrderHistory(APIView):
 
     def get(self, request):
-        orders = Order.objects.filter(status='Completed').order_by('-created_at')
+        orders = Order.objects.filter(status='Completed').order_by('-id')
         orderHistory = []
         for order in orders:
             data = {
